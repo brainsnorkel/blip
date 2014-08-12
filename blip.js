@@ -216,7 +216,11 @@ c1.drawYAxis();
 // and find a different server to ping.
 //     -- apenwarr, 2013/04/26
 addBlip('rgba(0,255,0,0.8)', 'http://gstatic.com/generate_204', 0);
-addBlip('rgba(255,165,10,0.8)', 'http://www.optus.com.au', 0);
+
+// Add an Australia-local site now that gstatic.com seems to ping at the same rate as apenwarr.ca
+// chrisg@xop.co 2014-08-12
+
+addBlip('rgba(255,165,10,0.8)', 'http://speedtest.syd.optusnet.com.au', 0);
 
 // Nobody really cares about apenwarr.ca, which is just hosted on a cheap
 // VPS somewhere.  If you overload it, I guess I'll be sort of impressed
