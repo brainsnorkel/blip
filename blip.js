@@ -57,7 +57,7 @@ var updateMinDelay = function() {
     // us down under load.
     setTimeout(updateMinDelay, 60000);
   });
-}
+};
 updateMinDelay();
 
 var BlipCanvas = function(canvas, width) {
@@ -81,7 +81,7 @@ var BlipCanvas = function(canvas, width) {
       this.ctx.fillText(msecs, (this.xofs - 3) / 3, this.msecToY(msecs));
     }
     this.ctx.scale(1/3, 1);
-  }
+  };
 
   this.nextX = function(msecs) {
     var steps = msecs / absolute_mindelay;
@@ -105,12 +105,12 @@ var BlipCanvas = function(canvas, width) {
                         new_x - 1, this.canvas.height);
     }
     this.current_x = new_x;
-  }
+  };
 
   this.msecToY = function(msecs) {
     return this.canvas.height -
         (Math.log(msecs) * this.canvas.height / log_range);
-  }
+  };
 
   this.drawBlip = function(color, startTime, endTime, minlatency) {
     var msecs = endTime - startTime;
@@ -135,8 +135,8 @@ var BlipCanvas = function(canvas, width) {
     }
     this.ctx.fillStyle = color;
     this.ctx.fillRect(x - 1, y - 3, 2, 6);
-  }
-}
+  };
+};
 
 var c1 = new BlipCanvas($('#hires')[0], 1000);
 var c2 = new BlipCanvas($('#lores')[0], 10000);
@@ -145,14 +145,14 @@ var blips = [];
 
 var addBlip = function(color, url, minlatency) {
   blips.push({color: color, url: url, minlatency: minlatency});
-}
+};
 
 var gotBlip = function(color, url, minlatency, startTime) {
   var endTime = now();
   c1.drawBlip(color, startTime, endTime, minlatency);
   c2.drawBlip(color, startTime, endTime, minlatency);
   addBlip(color, url, minlatency);
-}
+};
 
 var startBlips = function() {
   while (blips.length) {
@@ -161,9 +161,9 @@ var startBlips = function() {
       var startTime = now();
       var result = function() {
         gotBlip(blip.color, blip.url, blip.minlatency, startTime);
-      }
+      };
       return result;
-    }
+    };
     var result = createResult(blip);
     $.ajax({
       'url': blip.url,
@@ -199,7 +199,7 @@ var toggleBlip = function() {
     lastTick = now();
     nextFrame(gotTick);
   }
-}
+};
 
 c1.drawYAxis();
 
